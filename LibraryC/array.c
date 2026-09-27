@@ -60,6 +60,9 @@ void array_set(Array *arr, size_t index, Data value)
     if (arr == NULL || index >= arr->size)
         return;
 
+    if (arr->data[index] != 0 && arr->data[index] != value && arr->free_func != NULL)
+        arr->free_func((void *)arr->data[index]);
+
     arr->data[index] = value;
 }
 
