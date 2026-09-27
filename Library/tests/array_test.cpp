@@ -1,12 +1,15 @@
 #include "array.h"
-#include <cassert>
 #include <iostream>
 #include <stdexcept>
 
 int main()
 {
     Array* arr = array_create(5);
-    assert(array_size(arr) == 5);
+    if (array_size(arr) != 5)
+    {
+        std::cerr << "Неверный размер массива" << std::endl;
+        return 1;
+    }
 
     for (size_t i = 0; i < array_size(arr); i++)
     {
@@ -15,7 +18,11 @@ int main()
 
     for (size_t i = 0; i < array_size(arr); i++)
     {
-        assert(array_get(arr, i) == static_cast<Data>(i * 2));
+        if (array_get(arr, i) != static_cast<Data>(i * 2))
+        {
+            std::cerr << "Неверное значение элемента массива" << std::endl;
+            return 1;
+        }
     }
 
     bool caughtOnGet = false;
@@ -27,7 +34,11 @@ int main()
     {
         caughtOnGet = true;
     }
-    assert(caughtOnGet);
+    if (!caughtOnGet)
+    {
+        std::cerr << "array_get не бросил исключение при выходе за границы" << std::endl;
+        return 1;
+    }
 
     bool caughtOnSet = false;
     try
@@ -38,12 +49,20 @@ int main()
     {
         caughtOnSet = true;
     }
-    assert(caughtOnSet);
+    if (!caughtOnSet)
+    {
+        std::cerr << "array_set не бросил исключение при выходе за границы" << std::endl;
+        return 1;
+    }
 
     array_destroy(arr);
 
     Array* empty = array_create(0);
-    assert(array_size(empty) == 0);
+    if (array_size(empty) != 0)
+    {
+        std::cerr << "Пустой массив имеет неверный размер" << std::endl;
+        return 1;
+    }
     array_destroy(empty);
 
     std::cout << "Все проверки массива пройдены успешно" << std::endl;
