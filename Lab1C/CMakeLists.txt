@@ -2,9 +2,9 @@ add_executable(AlternatingSum alternating_sum.c)
 target_include_directories(AlternatingSum PUBLIC ../LibraryC)
 target_link_libraries(AlternatingSum LibraryC)
 
-add_executable(MostFrequent most_frequent.c)
-target_include_directories(MostFrequent PUBLIC ../LibraryC)
-target_link_libraries(MostFrequent LibraryC)
+add_executable(MostFrequentC most_frequent.c)
+target_include_directories(MostFrequentC PUBLIC ../LibraryC)
+target_link_libraries(MostFrequentC LibraryC)
 
 add_test(
     NAME AlternatingSumTest1
@@ -38,7 +38,7 @@ set_tests_properties(
 
 add_test(
     NAME MostFrequentTest1
-    COMMAND MostFrequent ${CMAKE_CURRENT_SOURCE_DIR}/frequent_input_1.txt
+    COMMAND MostFrequentC ${CMAKE_CURRENT_SOURCE_DIR}/frequent_input_1.txt
 )
 
 set_tests_properties(
@@ -48,7 +48,7 @@ set_tests_properties(
 
 add_test(
     NAME MostFrequentTest2
-    COMMAND MostFrequent ${CMAKE_CURRENT_SOURCE_DIR}/frequent_input_2.txt
+    COMMAND MostFrequentC ${CMAKE_CURRENT_SOURCE_DIR}/frequent_input_2.txt
 )
 
 set_tests_properties(
@@ -58,7 +58,7 @@ set_tests_properties(
 
 add_test(
     NAME MostFrequentTest3
-    COMMAND MostFrequent ${CMAKE_CURRENT_SOURCE_DIR}/frequent_input_3.txt
+    COMMAND MostFrequentC ${CMAKE_CURRENT_SOURCE_DIR}/frequent_input_3.txt
 )
 
 set_tests_properties(
